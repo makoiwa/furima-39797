@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type    | Options     |
-| ------------------ | ------- | ----------- |
-| nickname           | string  | null: false |
-| email              | string  | null: false |
-| encrypted_password | string  | null: false |
-| first_name         | string  | null: false |
-| second_name        | string  | null: false |
-| f_name_kana        | string  | null: false |
-| s_name_kana        | string  | null: false |
-| birthday           | date    | null: false |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| first_name         | string  | null: false               |
+| second_name        | string  | null: false               |
+| f_name_kana        | string  | null: false               |
+| s_name_kana        | string  | null: false               |
+| birthday           | date    | null: false               |
 
 ### Association
 
@@ -27,7 +27,7 @@
 | category_id      | integer    | null: false                    |
 | condition_id     | integer    | null: false                    |
 | delivery_cost_id | integer    | null: false                    |
-| ship_from_id     | integer    | null: false                    |
+| prefectures_id   | integer    | null: false                    |
 | shipment_day_id  | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
@@ -55,7 +55,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | post_code      | string     | null: false                    |
-| prefectures    | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
 | city           | string     | null: false                    |
 | street_address | string     | null: false                    |
 | building       | string     |                                |
@@ -64,4 +64,4 @@
 
 ### Association
 
-- belongs_to :orders
+- belongs_to :order
