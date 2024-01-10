@@ -77,6 +77,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price は範囲外です")
       end
+      it '価格は整数のみ保存可能であること' do
+        @item.price = '1000.1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price は範囲外です")
+      end
     end
   end
 end
