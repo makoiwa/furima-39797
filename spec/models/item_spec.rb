@@ -12,6 +12,11 @@ RSpec.describe Item, type: :model do
       end
     end
     context '出品ができない時' do
+      it 'ユーザー情報がない場合は登録ができない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
       it '商品画像を1枚つけることが必須であること' do
         @item.image = nil
         @item.valid?
@@ -28,27 +33,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
       it 'カテゴリーの情報が必須であること' do
-        @item.category_id = ''
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '商品の状態の情報が必須であること' do
-        @item.condition_id = ''
+        @item.condition_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it '配送料の負担の情報が必須であること' do
-        @item.delivery_cost_id = ''
+        @item.delivery_cost_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery cost can't be blank")
       end
       it '発送元の地域の情報が必須であること' do
-        @item.prefectures_id = ''
+        @item.prefectures_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefectures can't be blank")
       end
       it '発送までの日数の情報が必須であること' do
-        @item.shipment_day_id = ''
+        @item.shipment_day_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipment day can't be blank")
       end
