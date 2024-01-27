@@ -52,9 +52,6 @@ class ItemsController < ApplicationController
   def check_product_user
     unless current_user.id == @item.user.id
       redirect_to root_path
-    elsif
-      @item.id = @item.order
-      redirect_to root_path
     end
   end
 end
