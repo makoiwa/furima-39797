@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :create]
   before_action :set_item, only: [:index, :create]
   
   def index
@@ -27,14 +28,10 @@ class OrdersController < ApplicationController
   end
 
   def check_product_user
-    if user_signed_in?
-      if current_user.id == @item.user.id
-        redirect_to root_path
-      elsif @item.order.present?
-        redirect_to root_path
-      end
-    else
-      redirect_to new_user_session_path
+    if current_user.id == @item.user.id
+      redirect_to root_path
+    elsif @item.order.present?
+      redirect_to root_path
     end
   end
 
